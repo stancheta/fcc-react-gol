@@ -1,13 +1,15 @@
-# FCC-DataVis-Boilerplate
+# FCC-React-Game-Of-Life
 
-This is a simple boilerplate for the challenges on [FreeCodeCamp's](https://www.freecodecamp.com/)
- Data Visualization Path. It was made by ejecting Facebook/React team's fantastic
- [Create React App](https://facebook.github.io/react/blog/2016/07/22/create-apps-with-no-configuration.html)
- and adding some extra lines on the Webpack config file to support SASS/SCSS.
+##Install##
 
- Here is a link to Create React App's original [README](https://github.com/facebookincubator/create-react-app/blob/master/README.md).  
+In order to start using this project, you can either clone it or download it as
+a zip file. After which, you need to install the dependencies of the project.
 
-I created this boilerplate in order to tackle freecodecamp's Data Visualization challenges, but it can now also be used for freecodecamp's Dynamic Web Application challenges with the addition of a basic express server.  If there's anything that you find to make this boilerplate better, feel free to make a pull request.
+Acquire node from the [Node.js website](https://nodejs.com/en/).
+
+Install the node_modules dependencies with `npm install`
+
+## How to Use
 
 npm scripts:
 `npm start` will start up a webpack server for developing a front end react app.
@@ -19,3 +21,26 @@ npm scripts:
 `npm run prod` will build and then serve the project.
 
 If you want to use the original datavis only boilerplate, then use the `datavis-only` branch.
+
+## Project Description
+
+FreeCodeCamp has a series of projects with increasingly complex [requirements](https://www.freecodecamp.com/challenges/build-the-game-of-life).
+This project uses React and SASS to simulate Conway's Game of Life.
+
+### Requirements
+1. When I first arrive at the game, it will randomly generate a board and start playing.
+2. I can start and stop the board.
+3. I can set up the board.
+4. I can clear the board.
+5. When I press start, the game will play out.
+6. Each time the board changes, I can see how many generations have gone by.
+
+### Technologies Used:
++ HTML5
++ SASS
++ Javascript
++ React
++ [Create React App](https://facebook.github.io/react/blog/2016/07/22/create-apps-with-no-configuration.html)
+
+### Live Demo
+Coming Soon
