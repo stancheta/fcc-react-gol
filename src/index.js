@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import GolDashboard from './GolDashboard';
 import './index.sass';
 
 ReactDOM.render(
-  <App />,
+  <GolDashboard />,
   document.getElementById('root')
 );
