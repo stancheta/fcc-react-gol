@@ -33,7 +33,7 @@ const GolMenu = React.createClass({
           Clear
         </button>
 
-        <h3>State:</h3>
+        <h3>Board Size:</h3>
         <button name='small-button' value='small' onClick={this.handleButtonClick}>
           50x30
         </button>
