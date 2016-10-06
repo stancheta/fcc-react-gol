@@ -7,7 +7,11 @@ const GolDashboard = React.createClass({
   render: function() {
     return (
       <div className="GolDashboard">
-        <GolMenu />
+        <GolMenu
+          size={'small'}
+          speed={'slow'}
+          state={'play'}
+        />
         <GolScreen />
       </div>
     );
