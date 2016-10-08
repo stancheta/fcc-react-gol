@@ -1,6 +1,16 @@
 import React from 'react';
 import './GolScreen.sass';
 
+const GolScreenGrid = React.createClass({
+  render: function() {
+    return (
+      <svg>
+
+      </svg>
+    );
+  }
+});
+
 const GolScreenHeader = function(props) {
   return (
     <div  className="header">
@@ -17,6 +27,7 @@ const GolScreen = React.createClass({
           generation={0}
         />
         <hr />
+        <GolScreenGrid/>
       </div>
     );
   }
