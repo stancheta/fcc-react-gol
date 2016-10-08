@@ -18,7 +18,6 @@ const GolMenu = React.createClass({
     console.log(btn.value);
   },
   render: function() {
-    console.log(this.props.size)
     return (
       <div className="GolMenu section">
         <GolMenuHeader />

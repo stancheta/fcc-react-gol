@@ -4,6 +4,21 @@ import GolScreen from '../GolScreen/GolScreen';
 import './GolDashboard.sass';
 
 const GolDashboard = React.createClass({
+  getInitialState: function() {
+    return {
+      life: [],
+      width: 50,
+      height: 30
+    };
+  },
+  componentDidMount: function() {
+    const defaultSize = 1500;
+    let newLifeArr = [];
+    for (let i = 0; i < defaultSize; i++) {
+      newLifeArr.push({id: i, state: 'dead'});
+    }
+    this.setState({life: newLifeArr});
+  },
   render: function() {
     return (
       <div className="GolDashboard">
@@ -12,7 +27,11 @@ const GolDashboard = React.createClass({
           speed={'slow'}
           state={'play'}
         />
-        <GolScreen />
+        <GolScreen
+          lifeArr={this.state.life}
+          width={this.state.width}
+          height={this.state.height}
+         />
       </div>
     );
   }
