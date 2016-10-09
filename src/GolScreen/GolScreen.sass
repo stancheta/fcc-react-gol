@@ -14,5 +14,12 @@
       margin: 0 0 0.5em 0
   svg
     padding: 0.5em 1em 1em 1em
-  .rect
-    fill: $bg-default
+
+.rect.dead
+  fill: $bg-default
+
+.rect.born
+  fill: lighten($brand-accent, 40)
+
+.rect.alive
+  fill: $brand-accent

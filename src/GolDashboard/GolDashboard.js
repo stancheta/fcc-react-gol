@@ -15,7 +15,12 @@ const GolDashboard = React.createClass({
     const size = this.state.width * this.state.height;
     let newLifeArr = [];
     for (let i = 0; i < size; i++) {
-      newLifeArr.push({id: i, state: 'dead'});
+      if (i === 1)
+        newLifeArr.push({id: i, state: 'born'});
+      else if (i === 2)
+        newLifeArr.push({id: i, state: 'alive'});
+      else
+        newLifeArr.push({id: i, state: 'dead'});
     }
     this.setState({life: newLifeArr});
   },
