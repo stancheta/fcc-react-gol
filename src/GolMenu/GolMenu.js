@@ -13,9 +13,6 @@ const GolMenuHeader = function(props) {
 };
 
 const GolMenu = React.createClass({
-  handleButtonClick: function(evt) {
-    const btn = evt.target;
-  },
   handleSizeButtonClick: function(evt) {
     const btn = evt.target;
     if (btn.value === 'small') {
@@ -26,23 +23,32 @@ const GolMenu = React.createClass({
       this.props.onSizeChange(100, 80);
     }
   },
+  handleSpeedButtonClick: function(evt) {
+    const btn = evt.target;
+  },
+  handleStateButtonClick: function(evt) {
+    const btn = evt.target;
+    if (btn.value === 'clear') {
+      this.props.onClearGrid();
+    }
+  },
   render: function() {
     return (
       <div className="GolMenu section">
         <GolMenuHeader />
 
         <h3>State:</h3>
-        <button name='play-button' value='play' onClick={this.handleButtonClick}
+        <button name='play-button' value='play' onClick={this.handleStateButtonClick}
           className={this.props.state === 'play' ? 'btn-active' : ''}
         >
           Play
         </button>
-        <button name='pause-button' value='pause' onClick={this.handleSizeButtonClick}
+        <button name='pause-button' value='pause' onClick={this.handleStateButtonClick}
           className={this.props.state === 'pause' ? 'btn-active' : ''}
         >
           Pause
         </button>
-        <button name='clear-button' value='clear' onClick={this.handleSizeButtonClick}>
+        <button name='clear-button' value='clear' onClick={this.handleStateButtonClick}>
           Clear
         </button>
 
@@ -64,17 +70,17 @@ const GolMenu = React.createClass({
         </button>
 
         <h3>Simulation Speed:</h3>
-        <button name='slow-button' value='slow' onClick={this.handleButtonClick}
+        <button name='slow-button' value='slow' onClick={this.handleSpeedButtonClick}
           className={this.props.speed === 'slow' ? 'btn-active' : ''}
         >
           Slow
         </button>
-        <button name='medium-button' value='medium' onClick={this.handleButtonClick}
+        <button name='medium-button' value='medium' onClick={this.handleSpeedButtonClick}
           className={this.props.speed === 'medium' ? 'btn-active' : ''}
         >
           Medium
         </button>
-        <button name='fast-button' value='fast' onClick={this.handleButtonClick}
+        <button name='fast-button' value='fast' onClick={this.handleSpeedButtonClick}
           className={this.props.speed === 'fast' ? 'btn-active' : ''}
         >
           Fast

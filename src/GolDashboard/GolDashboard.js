@@ -20,6 +20,19 @@ const GolDashboard = React.createClass({
       state: 'play'
     });
   },
+  handleClearGrid: function() {
+    this.setState({
+      life: this.state.life.map((l) => {
+        if (l.state === 'dead') {
+          return l;
+        } else {
+          return Object.assign({}, l, {
+            state: 'dead'
+          });
+        }
+      })
+    });
+  },
   handleSizeChange: function(w, h) {
     this.setState({
       width: w,
@@ -35,6 +48,7 @@ const GolDashboard = React.createClass({
           speed={'slow'}
           state={'play'}
           onSizeChange={this.handleSizeChange}
+          onClearGrid={this.handleClearGrid}
         />
         <GolScreen
           lifeArr={this.state.life}
