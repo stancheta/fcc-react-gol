@@ -14,8 +14,9 @@ const GolDashboard = React.createClass({
     };
   },
   componentDidMount: function() {
+    // life: helpers.newGrid(this.state.width, this.state.height),
     this.setState({
-      life: helpers.newBoard(this.state.width, this.state.height),
+      life: helpers.randomizeGrid(helpers.newGrid(this.state.width, this.state.height)),
       state: 'play'
     });
   },

@@ -1,16 +1,24 @@
 
+function randomNumGen(max, min) {
+  const minimum = min || 0;
+  return Math.floor((Math.random() * (max - minimum)) + minimum);
+}
+
 module.exports = {
-  newBoard: function(width, height) {
+  newGrid: function(width, height) {
     const size = width * height;
     let newLifeArr = [];
     for (let i = 0; i < size; i++) {
-      if (i === 1)
-        newLifeArr.push({id: i, state: 'born'});
-      else if (i === 2)
-        newLifeArr.push({id: i, state: 'alive'});
-      else
-        newLifeArr.push({id: i, state: 'dead'});
+      newLifeArr.push({id: i, state: 'dead'});
     }
     return newLifeArr;
+  },
+  randomizeGrid: function(grid) {
+    const lifeStates = ['dead', 'born', 'alive'];
+    return grid.map((block) => {
+      return Object.assign({}, block, {
+        state: lifeStates[randomNumGen(lifeStates.length)]
+      });
+    });
   }
 }
