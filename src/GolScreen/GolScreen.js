@@ -10,21 +10,24 @@ const GolScreenGrid = React.createClass({
     const rectSize = 10;
     const marginSize = 1;
     const grid = this.props.lifeArr.map((life) => {
+      if (life.displayPos) {
+        console.log(life.displayPos)
         return (
           <rect
             key={life.id}
             id={life.id}
             value={life.state}
             className={'rect ' + life.state}
-            x={(life.id % this.props.width) * (rectSize + marginSize) }
-            y={(Math.floor(life.id / this.props.width) * (rectSize + marginSize))}
+            x={(life.displayPos % this.props.width) * (rectSize + marginSize) }
+            y={(Math.floor(life.displayPos / this.props.width) * (rectSize + marginSize))}
             height={rectSize}
             width={rectSize}
             onClick={this.handleBlockClick}
           />
         );
       }
-    );
+      return '';
+    });
     return (
       <svg width={this.props.width * (rectSize + marginSize)}
         height={this.props.height * (rectSize + marginSize)}>

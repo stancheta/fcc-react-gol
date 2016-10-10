@@ -19,7 +19,7 @@ const GolDashboard = React.createClass({
     // life: helpers.newGrid(this.state.width, this.state.height),
     this.setState({
       life: helpers.randomizeGrid(helpers.newGrid(this.state.width, this.state.height)),
-      gameState: 'play',
+      gameState: 'pause',
       speed: 'fast'
     });
   },
@@ -49,14 +49,17 @@ const GolDashboard = React.createClass({
     this.setState({speed: s});
   },
   handleStateChange(s) {
-    this.setState({gameState: s});
+    if (s === 'play') {
+      this.setState({
+        life: this.getNextGeneration()
+      });
+    }
+    this.setState({gameState: 'pause'});
   },
   handleBlockClick(id) {
-    console.log(id)
     this.setState({
       life: this.state.life.map((l) => {
         if (l.id === id) {
-          console.log(l.id)
           return Object.assign({}, l, {
             state: l.state === 'dead' ? 'born' : 'dead'
           });
@@ -64,6 +67,9 @@ const GolDashboard = React.createClass({
         return l;
       })
     });
+  },
+  getNextGeneration: function() {
+    
   },
   render: function() {
     return (
