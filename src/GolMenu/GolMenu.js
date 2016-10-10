@@ -15,7 +15,16 @@ const GolMenuHeader = function(props) {
 const GolMenu = React.createClass({
   handleButtonClick: function(evt) {
     const btn = evt.target;
-    console.log(btn.value);
+  },
+  handleSizeButtonClick: function(evt) {
+    const btn = evt.target;
+    if (btn.value === 'small') {
+      this.props.onSizeChange(50, 30);
+    } else if (btn.value === 'medium') {
+      this.props.onSizeChange(70, 50);
+    } else if (btn.value === 'large'){
+      this.props.onSizeChange(100, 80);
+    }
   },
   render: function() {
     return (
@@ -28,28 +37,28 @@ const GolMenu = React.createClass({
         >
           Play
         </button>
-        <button name='pause-button' value='pause' onClick={this.handleButtonClick}
+        <button name='pause-button' value='pause' onClick={this.handleSizeButtonClick}
           className={this.props.state === 'pause' ? 'btn-active' : ''}
         >
           Pause
         </button>
-        <button name='clear-button' value='clear' onClick={this.handleButtonClick}>
+        <button name='clear-button' value='clear' onClick={this.handleSizeButtonClick}>
           Clear
         </button>
 
         <h3>Board Size:</h3>
-        <button name='small-button' value='small' onClick={this.handleButtonClick}
-          className={this.props.size === 'small' ? 'btn-active' : ''}
+        <button name='small-button' value='small' onClick={this.handleSizeButtonClick}
+          className={this.props.width === 50 ? 'btn-active' : ''}
         >
           50x30
         </button>
-        <button name='medium-button' value='medium' onClick={this.handleButtonClick}
-          className={this.props.size === 'medium' ? 'btn-active' : ''}
+        <button name='medium-button' value='medium' onClick={this.handleSizeButtonClick}
+          className={this.props.width === 70 ? 'btn-active' : ''}
         >
           70x50
         </button>
-        <button name='large-button' value='large' onClick={this.handleButtonClick}
-          className={this.props.size === 'large' ? 'btn-active' : ''}
+        <button name='large-button' value='large' onClick={this.handleSizeButtonClick}
+          className={this.props.width === 100 ? 'btn-active' : ''}
         >
           100x80
         </button>

@@ -20,13 +20,21 @@ const GolDashboard = React.createClass({
       state: 'play'
     });
   },
+  handleSizeChange: function(w, h) {
+    this.setState({
+      width: w,
+      height: h,
+      life: helpers.newGrid(w, h)
+    });
+  },
   render: function() {
     return (
       <div className="GolDashboard">
         <GolMenu
-          size={'small'}
+          width={this.state.width}
           speed={'slow'}
           state={'play'}
+          onSizeChange={this.handleSizeChange}
         />
         <GolScreen
           lifeArr={this.state.life}
