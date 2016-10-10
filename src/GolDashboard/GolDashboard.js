@@ -51,6 +51,20 @@ const GolDashboard = React.createClass({
   handleStateChange(s) {
     this.setState({gameState: s});
   },
+  handleBlockClick(id) {
+    console.log(id)
+    this.setState({
+      life: this.state.life.map((l) => {
+        if (l.id === id) {
+          console.log(l.id)
+          return Object.assign({}, l, {
+            state: l.state === 'dead' ? 'born' : 'dead'
+          });
+        }
+        return l;
+      })
+    });
+  },
   render: function() {
     return (
       <div className="GolDashboard">
@@ -68,6 +82,7 @@ const GolDashboard = React.createClass({
           lifeArr={this.state.life}
           width={this.state.width}
           height={this.state.height}
+          onBlockClick={this.handleBlockClick}
          />
       </div>
     );

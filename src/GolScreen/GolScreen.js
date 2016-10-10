@@ -2,6 +2,10 @@ import React from 'react';
 import './GolScreen.sass';
 
 const GolScreenGrid = React.createClass({
+  handleBlockClick: function(evt) {
+    const block = evt.target
+    this.props.onBlockClick(+block.id);
+  },
   render: function() {
     const rectSize = 10;
     const marginSize = 1;
@@ -10,11 +14,13 @@ const GolScreenGrid = React.createClass({
           <rect
             key={life.id}
             id={life.id}
+            value={life.state}
             className={'rect ' + life.state}
             x={(life.id % this.props.width) * (rectSize + marginSize) }
             y={(Math.floor(life.id / this.props.width) * (rectSize + marginSize))}
             height={rectSize}
             width={rectSize}
+            onClick={this.handleBlockClick}
           />
         );
       }
@@ -48,6 +54,7 @@ const GolScreen = React.createClass({
           lifeArr={this.props.lifeArr}
           width={this.props.width}
           height={this.props.height}
+          onBlockClick={this.props.onBlockClick}
         />
       </div>
     );
