@@ -41,7 +41,7 @@ const GolScreen = React.createClass({
     return (
       <div className="GolScreen section">
         <GolScreenHeader
-          generation={0}
+          generation={this.props.generation}
         />
         <hr />
         <GolScreenGrid

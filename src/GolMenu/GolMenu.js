@@ -25,11 +25,22 @@ const GolMenu = React.createClass({
   },
   handleSpeedButtonClick: function(evt) {
     const btn = evt.target;
+    if (btn.value === 'fast') {
+      this.props.onSpeedChange('fast');
+    } else if (btn.value === 'medium') {
+      this.props.onSpeedChange('medium');
+    } else if (btn.value === 'slow') {
+      this.props.onSpeedChange('slow');
+    }
   },
   handleStateButtonClick: function(evt) {
     const btn = evt.target;
     if (btn.value === 'clear') {
       this.props.onClearGrid();
+    } else if (btn.value === 'play') {
+      this.props.onStateChange('play');
+    } else if (btn.value === 'pause') {
+      this.props.onStateChange('pause');
     }
   },
   render: function() {
