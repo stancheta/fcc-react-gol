@@ -63,7 +63,7 @@ const GolDashboard = React.createClass({
     this.setState({speed: s});
     if (this.timer && this.state.gameState === 'play') {
       clearInterval(this.timer);
-      this.timer = setInterval(this.tick, config.timer[this.state.speed]);
+      this.timer = setInterval(this.tick, config.timer[s]);
     }
   },
   handleStateChange(s) {
