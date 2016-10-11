@@ -12,13 +12,13 @@ Install the node_modules dependencies with `npm install`
 ## How to Use
 
 npm scripts:
-`npm start` will start up a webpack server for developing a front end react app.
+`npm dev` will start up a webpack server for developing a front end react app.
 
 `npm run build` will build the project and place the files in a `public` folder.
 
 `npm run serve` will serve whatever is in the `public` folder on `localhost:8080` with an express server.
 
-`npm run prod` will build and then serve the project.
+`npm start` will build and then serve the project.
 
 If you want to use the original datavis only boilerplate, then use the `datavis-only` branch.
 
