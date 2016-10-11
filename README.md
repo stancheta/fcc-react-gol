@@ -12,7 +12,7 @@ Install the node_modules dependencies with `npm install`
 ## How to Use
 
 npm scripts:
-`npm dev` will start up a webpack server for developing a front end react app.
+`npm run dev` will start up a webpack server for developing a front end react app.
 
 `npm run build` will build the project and place the files in a `public` folder.
 
@@ -43,4 +43,4 @@ This project uses React and SASS to simulate Conway's Game of Life.
 + [Create React App](https://facebook.github.io/react/blog/2016/07/22/create-apps-with-no-configuration.html)
 
 ### Live Demo
-Coming Soon
+https://sta-gol.herokuapp.com/
