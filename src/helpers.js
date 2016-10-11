@@ -29,7 +29,44 @@ module.exports = {
       });
     });
   },
-  setBorderBlocks: function(displayHeight, displayWidth, grid) {
+  setBorderBlocks: function(displayWidth, displayHeight, grid) {
+    const width = displayWidth + 2;
+    const height = displayHeight + 2;
+    const size = width * height;
+    const dispCornerArr = [size - (width + 2), size - ((2 * width) - 1), (2 * width) - 2, width + 1];
+    const cornerArr = [0, width - 1, size - width, size - 1];
 
+    let cornerCount = -1;
+
+    if (grid.length > 0) {
+      return grid.map((life, i) => {
+        if (life.displayPos) {
+          return life;
+        } else if (cornerArr.includes(life.id)) {
+          cornerCount++;
+          return Object.assign({}, life, {
+            state: grid[dispCornerArr[cornerCount]].state
+          });
+        } else if (life.id < width) {
+          return Object.assign({}, life, {
+            state: grid[life.id + (size - (2 * width))].state
+          });
+        } else if (life.id >= size - width) {
+          return Object.assign({}, life, {
+            state: grid[life.id - (size - (2 * width))].state
+          });
+        } else if (life.id % width === width - 1) {
+          return Object.assign({}, life, {
+            state: grid[life.id - (width - 2)].state
+          });
+        } else if (life.id % width === 0) {
+          return Object.assign({}, life, {
+            state: grid[life.id + (width - 2)].state
+          });
+        }
+        return life;
+      });
+    }
+    return grid;
   }
 }

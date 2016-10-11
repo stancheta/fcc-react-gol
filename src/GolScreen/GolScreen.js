@@ -11,7 +11,6 @@ const GolScreenGrid = React.createClass({
     const marginSize = 1;
     const grid = this.props.lifeArr.map((life) => {
       if (life.displayPos) {
-        console.log(life.displayPos)
         return (
           <rect
             key={life.id}
