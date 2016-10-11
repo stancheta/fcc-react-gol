@@ -51,7 +51,8 @@ const GolDashboard = React.createClass({
   handleStateChange(s) {
     if (s === 'play') {
       this.setState({
-        life: this.getNextGeneration()
+        life: this.getNextGeneration(),
+        generation: this.state.generation + 1
       });
     }
     this.setState({gameState: 'pause'});
@@ -69,7 +70,39 @@ const GolDashboard = React.createClass({
     });
   },
   getNextGeneration: function() {
-    
+    const width = this.state.width + 2;
+    const newGrid = helpers.setBorderBlocks(this.state.width,this.state.height, this.state.life);
+    return newGrid.map((l) => {
+      let neighbors = [];
+      let neighborCount = 0;
+      if (l.displayPos) {
+        neighbors = [0, l.id - (width + 1), l.id - width, l.id - (width - 1), l.id - 1, l.id + 1,
+          l.id + (width + 1), l.id + width, l.id + (width - 1)];
+        neighborCount = neighbors.reduce((prev, curr) => {
+          if (newGrid[curr].state === 'alive' || newGrid[curr].state === 'born') {
+            return prev + 1;
+          } else {
+            return prev;
+          }
+        });
+
+        if (l.state === 'dead' && neighborCount === 3) {
+          return Object.assign({}, l, {
+            state: 'born'
+          });
+        } else if ((l.state === 'alive' || l.state === 'born') && (neighborCount === 2 || neighborCount === 3)) {
+          return Object.assign({}, l, {
+            state: 'alive'
+          });
+        }
+
+        return Object.assign({}, l, {
+          state: 'dead'
+        });
+
+      }
+      return l;
+    })
   },
   render: function() {
     return (
