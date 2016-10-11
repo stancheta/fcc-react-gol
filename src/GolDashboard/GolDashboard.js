@@ -17,7 +17,6 @@ const GolDashboard = React.createClass({
     };
   },
   componentDidMount: function() {
-    // life: helpers.newGrid(this.state.width, this.state.height),
     this.setState({
       life: helpers.randomizeGrid(helpers.newGrid(this.state.width, this.state.height)),
       gameState: 'play',
@@ -103,17 +102,18 @@ const GolDashboard = React.createClass({
             return prev;
           }
         });
-
+        // brings block back to life if there are exactly 3 neighbors
         if (l.state === 'dead' && neighborCount === 3) {
           return Object.assign({}, l, {
             state: 'born'
           });
+        // blocks stay alive if there are 2 or 3 neighbors
         } else if ((l.state === 'alive' || l.state === 'born') && (neighborCount === 2 || neighborCount === 3)) {
           return Object.assign({}, l, {
             state: 'alive'
           });
         }
-
+        // otherwise, blocks die or remain dead
         return Object.assign({}, l, {
           state: 'dead'
         });
@@ -127,6 +127,15 @@ const GolDashboard = React.createClass({
       life: this.getNextGeneration(),
       generation: this.state.generation + 1
     });
+
+    // stops Game of Life upon extinction
+    for (let i = 0; i < this.state.life.length; i++) {
+      if (this.state.life[i].state === 'alive' || this.state.life[i].state === 'born') break;
+      if (i === (this.state.life.length - 1)) {
+        this.setState({gameState: 'pause', generation: 0});
+        clearInterval(this.timer);
+      }
+    }
   },
   render: function() {
     return (

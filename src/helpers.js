@@ -30,6 +30,7 @@ module.exports = {
     });
   },
   setBorderBlocks: function(displayWidth, displayHeight, grid) {
+    // this function sets the border around the displayed grid to handle wrap-around
     const width = displayWidth + 2;
     const height = displayHeight + 2;
     const size = width * height;
