@@ -3,6 +3,7 @@ import GolMenu from '../GolMenu/GolMenu';
 import GolScreen from '../GolScreen/GolScreen';
 import './GolDashboard.sass';
 import helpers from '../helpers';
+import config from '../config';
 
 const GolDashboard = React.createClass({
   getInitialState: function() {
@@ -19,11 +20,19 @@ const GolDashboard = React.createClass({
     // life: helpers.newGrid(this.state.width, this.state.height),
     this.setState({
       life: helpers.randomizeGrid(helpers.newGrid(this.state.width, this.state.height)),
-      gameState: 'pause',
+      gameState: 'play',
       speed: 'fast'
     });
+
+    this.timer = setInterval(this.tick, config.timer['fast']);
+  },
+  componentWillUnmount: function() {
+    clearInterval(this.timer);
   },
   handleClearGrid: function() {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
     this.setState({
       life: this.state.life.map((l) => {
         if (l.state === 'dead') {
@@ -34,28 +43,37 @@ const GolDashboard = React.createClass({
           });
         }
       }),
-      gameState: 'pause'
+      gameState: 'pause',
+      generation: 0
     });
   },
   handleSizeChange: function(w, h) {
+    if (this.timer) {
+      clearInterval(this.timer);
+    }
     this.setState({
       width: w,
       height: h,
       life: helpers.newGrid(w, h),
-      gameState: 'pause'
+      gameState: 'pause',
+      generation: 0
     });
   },
   handleSpeedChange: function(s) {
     this.setState({speed: s});
+    if (this.timer && this.state.gameState === 'play') {
+      clearInterval(this.timer);
+      this.timer = setInterval(this.tick, config.timer[this.state.speed]);
+    }
   },
   handleStateChange(s) {
-    if (s === 'play') {
-      this.setState({
-        life: this.getNextGeneration(),
-        generation: this.state.generation + 1
-      });
+    if (s === 'play' && this.state.gameState === 'pause') {
+      this.setState({gameState: 'play'});
+      this.timer = setInterval(this.tick, config.timer[this.state.speed]);
+    } else if (s === 'pause' && this.state.gameState === 'play') {
+      this.setState({gameState: 'pause'});
+      clearInterval(this.timer);
     }
-    this.setState({gameState: 'pause'});
   },
   handleBlockClick(id) {
     this.setState({
@@ -103,6 +121,12 @@ const GolDashboard = React.createClass({
       }
       return l;
     })
+  },
+  tick: function() {
+    this.setState({
+      life: this.getNextGeneration(),
+      generation: this.state.generation + 1
+    });
   },
   render: function() {
     return (
