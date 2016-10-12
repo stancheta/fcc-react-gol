@@ -20,8 +20,6 @@ npm scripts:
 
 `npm start` will build and then serve the project.
 
-If you want to use the original datavis only boilerplate, then use the `datavis-only` branch.
-
 ## Project Description
 
 FreeCodeCamp has a series of projects with increasingly complex [requirements](https://www.freecodecamp.com/challenges/build-the-game-of-life).
